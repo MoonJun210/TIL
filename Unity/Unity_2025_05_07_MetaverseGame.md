@@ -6,6 +6,7 @@
 - 싱글톤 패턴의 활용
 - EventManager를 통한 메서드 호출 구조화
 - BaseController 기반 확장성 있는 캐릭터 시스템 설계
+- SpriteRender를 변경했는데 적용이 안되는 문제
 
 ## 🧠 이해한 내용
 - **씬 전환 후 데이터 초기화 문제**  
@@ -78,6 +79,11 @@ public class GameManager : MonoBehaviour
 - **BaseController 구조 설계**  
   플레이어와 NPC가 **공통된 BaseController**를 상속받아 구현되어 있음.  
   새로운 NPC가 추가되어도 같은 구조를 사용하므로 **확장성과 코드 재사용성**이 매우 높아졌음.
+
+- **SpriteRenderer 문제**
+  게임중 플레이어의 색상을 바꿔야되는 과제가 있는데 자연스럽게 sp.color를 변경했지만 적용이 안됐다. 검색결과 sp.color로 색상을 접근하는게 아니라
+  sp.material.color로 접근을 해야 바꿀 수 있었다. 근데 또 테스트 해본 결과 오브젝트의 setactive가 꺼져있을때는 sp.color로 변경이 가능했는데 
+  setactive가 켜져있을때는 작동을 안하는 것이였다. 이 점 유의해야겠다.
 
 ## 💡 느낀 점 / 생각
 - 메타버스 게임처럼 여러 씬 간 데이터 흐름이 중요한 프로젝트에서는 **싱글톤 관리의 중요성**을 절실히 느낌.
